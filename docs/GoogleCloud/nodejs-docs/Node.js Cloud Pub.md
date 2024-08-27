@@ -20,7 +20,7 @@ Before you can run or deploy the sample, you will need to do the following:
 
 ## Running locally
 
-Refer to the [appengine/README.md](../README.md) file for instructions on
+Refer to the [appengine/README.md] file for instructions on
 running and deploying.
 
 When running locally, you can use the [Google Cloud SDK](https://cloud.google.com/sdk)

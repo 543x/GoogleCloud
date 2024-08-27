@@ -71,7 +71,7 @@ We recommend using the Python version management tool
 doc](https://g3doc.corp.google.com/company/teams/cloud-devrel/dpe/samples/python.md?cl=head).
 
 **Using MacOS?:** See [Setting up a Mac development environment with pyenv and
-pyenv-virtualenv](MAC_SETUP.md).
+pyenv-virtualenv].
 
 Afterwards, see [Test Environment Setup](#test-environment-setup).
 

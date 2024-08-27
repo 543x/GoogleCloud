@@ -58,7 +58,7 @@ You can find all the examples on the [examples](https://diagrams.mingrammer.com/
 
 ## Contributing
 
-To contribute to diagram, check out [contribution guidelines](CONTRIBUTING.md).
+To contribute to diagram, check out [contribution guidelines]
 
 > Let me know if you are using diagrams! I'll add you in showcase page. (I'm working on it!) :)
 

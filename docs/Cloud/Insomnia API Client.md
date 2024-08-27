@@ -51,7 +51,7 @@ For more generic product questions and feedback, join the [Slack Team](https://c
 
 ## Contributing
 
-Please read through our [contributing guidelines](CONTRIBUTING.md) and [code of conduct](CODE_OF_CONDUCT.md). Included are directions for opening issues, coding standards, and notes on development.
+Please read through our [contributing guidelines] and [code of conduct]. Included are directions for opening issues, coding standards, and notes on development.
 
 ## Documentation
 

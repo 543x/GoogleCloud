@@ -4,7 +4,7 @@ flexible environment using Node.js.
 
 ## Running locally
 
-Refer to the [appengine/README.md](../README.md) file for instructions on
+Refer to the [appengine/README.md] file for instructions on
 running locally.
 
 ## Deploying to Google App Engine

@@ -24,7 +24,7 @@ with the following command:
 
 ## Running locally
 
-Refer to the [top-level README](../../README.md) for instructions on running and
+Refer to the [top-level README] for instructions on running and
 deploying.
 
 When running locally, you can use the [Google Cloud SDK](https://cloud.google.com/sdk)

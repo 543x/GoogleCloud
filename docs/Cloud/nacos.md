@@ -77,7 +77,7 @@ All the latest and long-term notice can also be found here from [GitHub notice i
 
 ## Contributing
 
-Contributors are welcomed to join Nacos project. Please check [CONTRIBUTING](./CONTRIBUTING.md) about how to contribute to this project.
+Contributors are welcomed to join Nacos project. Please check [CONTRIBUTING] about how to contribute to this project.
 
 ### How can I contribute?
 

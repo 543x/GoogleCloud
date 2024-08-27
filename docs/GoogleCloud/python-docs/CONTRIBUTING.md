@@ -13,7 +13,7 @@ please open an issue for discussion first.
 3. If your proposed change is accepted, and you haven't already done so, sign a
    Contributor License Agreement (see details above).
 4. Fork this repo, develop and test your code changes. Tests are required for all
-   samples. See the [Authoring Guide](AUTHORING_GUIDE.md) for details.
+   samples. See the [Authoring Guide] for details.
 5. Ensure that your code adheres to the existing style in the sample to which
    you are contributing.
 6. Ensure that your code has an appropriate set of unit tests which all pass.
@@ -37,11 +37,11 @@ be able to accept your pull requests.
 
 ## Setting up a development environment
 
-* [Mac development environment guide](MAC_SETUP.md)
+* [Mac development environment guide]
 
 ## Authoring, testing, and contributing samples
 
-See [AUTHORING_GUIDE.md](AUTHORING_GUIDE.md).
+See [AUTHORING_GUIDE.md].
 
 ## Code Reviews
 
