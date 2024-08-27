@@ -1,0 +1,381 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "openapi": [
+    "/openapi.yaml"
+  ],
+  "name": "Coolify Documentation",
+  "feedback": {
+    "suggestEdit": true
+  },
+  "metadata": {
+    "og:site_name": "Coolify",
+    "og:description": "Self-hosting with superpowers.",
+    "og:title": "Coolify Documentation",
+    "og:url": "https://coolify.io",
+    "og:locale": "en_US",
+    "og:image": "https://cdn.coollabs.io/assets/coolify/og-image-docs.png",
+    "twitter:title": "Coolify Documentation",
+    "twitter:description": "Self-hosting with superpowers.",
+    "twitter:url": "https://twitter.com/coolifyio",
+    "twitter:site": "@coolifyio"
+  },
+  "favicon": "/logo/coolify.png",
+  "colors": {
+    "primary": "#6B16ED",
+    "light": "#FCD34D",
+    "dark": "#6B16ED",
+    "anchors": {
+      "from": "#FCD34D",
+      "to": "#6B16ED"
+    },
+    "background": {
+      "dark": "#181818"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:hi@coollabs.io"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Cloud",
+    "url": "https://app.coolify.io"
+  },
+  "tabs": [
+    {
+      "name": "Knowledge Base",
+      "url": "knowledge-base"
+    },
+    {
+      "name": "Resources",
+      "url": "resources"
+    },
+    {
+      "name": "API",
+      "url": "api-reference"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://coolify.io/discord"
+    },
+    {
+      "name": "Sponsorship",
+      "icon": "heart-pulse",
+      "url": "https://coolify.io/sponsorship"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "introduction",
+        "screenshots",
+        "videos",
+        "quickstart",
+        "installation",
+        "uninstall",
+        "upgrade",
+        "downgrade",
+        "contact"
+      ]
+    },
+    {
+      "group": "",
+      "pages": [
+        "resources/index"
+      ]
+    },
+    {
+      "group": "Applications",
+      "pages": [
+        "resources/applications/index",
+        "resources/applications/rails",
+        "resources/applications/laravel",
+        "resources/applications/django",
+        "resources/applications/svelte-kit",
+        "resources/applications/nextjs",
+        "resources/applications/jekyll"
+      ]
+    },
+    {
+      "group": "Services",
+      "pages": [
+        "resources/services/index",
+        "resources/services/appsmith",
+        "resources/services/appwrite",
+        "resources/services/activepieces",
+        "resources/services/authentik",
+        "resources/services/babybuddy",
+        "resources/services/budge",
+        "resources/services/changedetection",
+        "resources/services/classicpress",
+        "resources/services/code-server",
+        "resources/services/dashboard",
+        "resources/services/directus",
+        "resources/services/dokuwiki",
+        "resources/services/duplicati",
+        "resources/services/emby",
+        "resources/services/emby-stat",
+        "resources/services/fider",
+        "resources/services/filebrowser",
+        "resources/services/firefly-iii",
+        "resources/services/formbricks",
+        "resources/services/ghost",
+        "resources/services/gitea",
+        "resources/services/glitchtip",
+        "resources/services/grafana",
+        "resources/services/grocy",
+        "resources/services/heimdall",
+        "resources/services/jellyfin",
+        "resources/services/kuzzle",
+        "resources/services/logto",
+        "resources/services/meilisearch",
+        "resources/services/metabase",
+        "resources/services/metube",
+        "resources/services/plausible",
+        "resources/services/minio"
+      ]
+    },
+    {
+      "group": "General",
+      "pages": [
+        "knowledge-base/faq",
+        "knowledge-base/applications",
+        "knowledge-base/healthchecks",
+        "knowledge-base/databases",
+        "knowledge-base/domains",
+        "knowledge-base/monitoring",
+        "knowledge-base/environment-variables",
+        "knowledge-base/persistent-storage",
+        "knowledge-base/backups",
+        "knowledge-base/dns-configuration",
+        "knowledge-base/drain-logs",
+        "knowledge-base/commands",
+        "knowledge-base/add-a-service"
+      ]
+    },
+    {
+      "group": "How-tos",
+      "pages": [
+        "knowledge-base/how-to/hetzner-loadbalancing"
+      ]
+    },
+    {
+      "group": "Administration (Self-hosted)",
+      "pages": [
+        "knowledge-base/self-hosted-admin/delete-user"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/introduction",
+        "api-reference/authorization",
+        "api-reference/version",
+        "api-reference/healthcheck",
+        "api-reference/enable-api",
+        "api-reference/disable-api",
+        {
+          "group": "Servers",
+          "pages": [
+            "api-reference/servers/list",
+            "api-reference/servers/get",
+            "api-reference/servers/create",
+            "api-reference/servers/update",
+            "api-reference/servers/delete",
+            "api-reference/servers/resources",
+            "api-reference/servers/domains",
+            "api-reference/servers/validate"
+          ]
+        },
+        {
+          "group": "Teams",
+          "pages": [
+            "api-reference/teams/list",
+            "api-reference/teams/get",
+            "api-reference/teams/members",
+            "api-reference/teams/authenticated-team",
+            "api-reference/teams/authenticated-team-members"
+          ]
+        },
+        {
+          "group": "Projects",
+          "pages": [
+            "api-reference/projects/list",
+            "api-reference/projects/get",
+            "api-reference/projects/create",
+            "api-reference/projects/update",
+            "api-reference/projects/delete",
+            "api-reference/projects/environment"
+          ]
+        },
+        {
+          "group": "Private Keys",
+          "pages": [
+            "api-reference/private-keys/list",
+            "api-reference/private-keys/get",
+            "api-reference/private-keys/create",
+            "api-reference/private-keys/update",
+            "api-reference/private-keys/delete"
+          ]
+        },
+        {
+          "group": "Deployments",
+          "pages": [
+            "api-reference/deployments/list",
+            "api-reference/deployments/get",
+            "api-reference/deployments/deploy"
+          ]
+        },
+        {
+          "group": "Resources",
+          "pages": [
+            "api-reference/resources/list"
+          ]
+        },
+        {
+          "group": "Applications",
+          "pages": [
+            "api-reference/applications/list",
+            "api-reference/applications/get",
+            "api-reference/applications/update",
+            "api-reference/applications/create-public",
+            "api-reference/applications/create-private--gh-app",
+            "api-reference/applications/create-private--deploy-key",
+            "api-reference/applications/create-dockerfile",
+            "api-reference/applications/create-docker-image",
+            "api-reference/applications/create-docker-compose",
+            "api-reference/applications/delete",
+            "api-reference/applications/list-envs",
+            "api-reference/applications/create-env",
+            "api-reference/applications/update-env",
+            "api-reference/applications/update-envs-bulk",
+            "api-reference/applications/delete-env",
+            "api-reference/applications/start",
+            "api-reference/applications/stop",
+            "api-reference/applications/restart"
+          ]
+        },
+        {
+          "group": "Databases",
+          "pages": [
+            "api-reference/databases/list",
+            "api-reference/databases/get",
+            "api-reference/databases/update",
+            "api-reference/databases/create-postgresql",
+            "api-reference/databases/create-clickhouse",
+            "api-reference/databases/create-dragonfly",
+            "api-reference/databases/create-redis",
+            "api-reference/databases/create-keydb",
+            "api-reference/databases/create-mariadb",
+            "api-reference/databases/create-mysql",
+            "api-reference/databases/create-mongodb",
+            "api-reference/databases/start",
+            "api-reference/databases/stop",
+            "api-reference/databases/restart"
+          ]
+        },
+        {
+          "group": "Services",
+          "pages": [
+            "api-reference/services/list",
+            "api-reference/services/get",
+            "api-reference/services/create",
+            "api-reference/services/delete",
+            "api-reference/services/start",
+            "api-reference/services/stop",
+            "api-reference/services/restart"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Git",
+      "pages": [
+        {
+          "group": "GitHub",
+          "pages": [
+            "knowledge-base/git/github/integration",
+            "knowledge-base/git/github/github-actions"
+          ]
+        },
+        {
+          "group": "Gitlab",
+          "pages": [
+            "knowledge-base/git/gitlab/integration"
+          ]
+        },
+        {
+          "group": "Bitbucket",
+          "pages": [
+            "knowledge-base/git/bitbucket/integration"
+          ]
+        },
+        {
+          "group": "Gitea",
+          "pages": [
+            "knowledge-base/git/gitea/integration"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Server",
+      "pages": [
+        "knowledge-base/server/introduction",
+        "knowledge-base/server/firewall",
+        "knowledge-base/server/build-server",
+        "knowledge-base/server/multiple-servers",
+        "knowledge-base/server/openssh",
+        "knowledge-base/server/oracle-cloud",
+        "knowledge-base/server/proxies",
+        "knowledge-base/server/automated-cleanup",
+        "knowledge-base/server/non-root-user"
+      ]
+    },
+    {
+      "group": "S3",
+      "pages": [
+        "knowledge-base/s3/index",
+        "knowledge-base/s3/aws",
+        "knowledge-base/s3/r2"
+      ]
+    },
+    {
+      "group": "Docker",
+      "pages": [
+        "knowledge-base/docker/swarm",
+        "knowledge-base/docker/registry",
+        "knowledge-base/docker/compose",
+        "knowledge-base/docker/custom-commands"
+      ]
+    },
+    {
+      "group": "Cloudflare",
+      "pages": [
+        "knowledge-base/cloudflare/tunnels"
+      ]
+    },
+    {
+      "group": "Traefik",
+      "pages": [
+        "knowledge-base/traefik/healthcheck",
+        "knowledge-base/traefik/basic-auth",
+        "knowledge-base/traefik/dashboard",
+        "knowledge-base/traefik/dynamic-configurations",
+        "knowledge-base/traefik/custom-ssl-certs",
+        "knowledge-base/traefik/load-balancing",
+        "knowledge-base/traefik/redirects",
+        "knowledge-base/traefik/wildcard-certificates"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/coolifyio",
+    "github": "https://github.com/coollabsio/coolify"
+  }
+}

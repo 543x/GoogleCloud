@@ -1,0 +1,338 @@
+---
+title: "Add a service"
+"og:title": "How to add a new service to Coolify"
+description: "Here you can find the documentation for adding new services to Coolify."
+---
+
+Service templates are predefined normal [docker-compose](https://docs.docker.com/compose/compose-file/compose-file-v3/) files + a bit of magic.
+
+## The bit of Magic
+
+To be able to predefine values, like usernames, passwords, fqdns, predefined values for bind (file) mounts etc, the docker-compose files are extended with a few keywords.
+
+> More magic coming soon 🪄
+
+In the [environment](https://docs.docker.com/compose/compose-file/compose-file-v3/#environment) option, you can do the following.
+
+Let's use `APPWRITE` as an example with a generate UUID of `vgsco4o` and with a [wildcard](/knowledge-base/server/introduction#wildcard-domain) domain of `http://example.com`.
+
+---
+
+### FQDN
+
+This will [generate](/knowledge-base/server/introduction#wildcard-domain) a FQDN for appwrite service.
+
+```yaml
+services:
+  appwrite:
+    environment:
+      # http://appwrite-vgsco4o.example.com/
+      - SERVICE_FQDN_APPWRITE
+```
+
+If you use the same variable on another service, it will generate the same FQDN for you.
+
+```yaml
+# This does not make sense, just here to show you how it works.
+services:
+  appwrite:
+    environment:
+      # http://appwrite-vgsco4o.example.com/
+      - SERVICE_FQDN_APPWRITE
+  not-appwrite:
+    environment:
+      # http://appwrite-vgsco4o.example.com/
+      - SERVICE_FQDN_APPWRITE
+```
+
+You sometimes need the same domain, but with different **paths**.
+
+```yaml
+# This makes sense, not like the previous.
+services:
+  appwrite:
+    environment:
+      # http://appwrite-vgsco4o.example.com/
+      - SERVICE_FQDN_APPWRITE
+  not-appwrite:
+    environment:
+      # http://appwrite-vgsco4o.example.com/v1/realtime
+      - SERVICE_FQDN_APPWRITE=/v1/realtime
+  definitely-not-appwrite:
+    environment:
+      # As SERVICE_FQDN_API is not the same as SERVICE_FQDN_APPWRITE
+      # Coolify will generate a new FQDN
+      # http://definitely-not-appwrite-vgsco4o.example.com/api
+      - SERVICE_FQDN_API=/api
+```
+
+You can reuse this generated FQDN anywhere.
+
+```yaml
+services:
+  appwrite:
+    environment:
+      # http://appwrite-vgsco4o.example.com/
+      - SERVICE_FQDN_APPWRITE
+      - _APP_URL=$SERVICE_FQDN_APPWRITE # _APP_URL will have the FQDN because SERVICE_FQDN_APPWRITE is just a simple environment variable
+```
+
+You sometimes need the same domain, but with different **ports**. This will tell the proxy which port to proxy to which domain.
+In the example, we combine paths and ports.
+
+```yaml
+services:
+  appwrite:
+    environment:
+      # http://appwrite-vgsco4o.example.com/ will be proxied to port 3000
+      - SERVICE_FQDN_APPWRITE_3000
+      # http://api-vgsco4o.example.com/api will be proxied to port 2000
+      - SERVICE_FQDN_API_2000=/api
+```
+
+This could be used as a value as well. No default value allowed.
+
+```yaml
+services:
+  appwrite:
+    environment:
+      # http://api-vgsco4o.example.com/api defined here
+      - SERVICE_FQDN_API_2000=/api
+      # http://appwrite-vgsco4o.example.com/ will be proxied to port 3000
+      - APPWRITE_URL=$SERVICE_FQDN_APPWRITE_3000
+      # http://api-vgsco4o.example.com/api will be proxied to port 2000
+      - APPWRITE_API_URL=$SERVICE_FQDN_API_2000
+```
+
+---
+
+### URL
+
+This will [generate](/knowledge-base/server/introduction#wildcard-domain) an URL based on the FQDN you have defined.
+
+```yaml
+services:
+  appwrite:
+    environment:
+      # appwrite-vgsco4o.example.com
+      - SERVICE_URL_APPWRITE
+```
+
+---
+
+### Username
+
+Example: `$SERVICE_USER_APPWRITE`
+
+Generator: `Str::random(16)`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      # qwhraJlpdkyKYSQ1
+      - APPWRITE_USERNAME=$SERVICE_USER_APPWRITE
+```
+
+---
+
+### Password
+
+Example: `$SERVICE_PASSWORD_APPWRITE`
+
+Generator: `Str::password(symbols: false)`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      # m5XOD0uY4k1hXgISYoJyLdPHG7oAbNYw
+      - APPWRITE_PASSWORD=$SERVICE_PASSWORD_APPWRITE
+```
+
+You can also generate 64 bit long password.
+
+Example: `$SERVICE_PASSWORD_64_APPWRITE`
+
+Generator: `Str::password(length: 64, symbols: false)`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      # J0QT0Cqr2ArmIT4RgTwK5F5lcXShgnJ53XTiHjqBbPntWVVG8DRHKnrsIjXBZJ8e
+      - APPWRITE_PASSWORD=$SERVICE_PASSWORD_64_APPWRITE
+```
+
+### BASE64
+
+This helper is **NOT** using base64 encoding, but it's generating a random string.
+
+Example: `$SERVICE_BASE64_APPWRITE`
+
+Generator: `Str::random(32)`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      - APPWRITE_SECRET=$SERVICE_BASE64_APPWRITE
+```
+
+If you wish to generate longer strings, you can use the following:
+
+#### BASE64_64
+
+Example: `$SERVICE_BASE64_64_APPWRITE`
+
+Generator: `Str::random(64)`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      - APPWRITE_SECRET=$SERVICE_BASE64_64_APPWRITE
+```
+
+#### BASE64_128
+
+Example: `$SERVICE_BASE64_128_APPWRITE`
+
+Generator: `Str::random(128)`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      - APPWRITE_SECRET=$SERVICE_BASE64_128_APPWRITE
+```
+
+### REALBASE64
+
+This helper does use base64 encoding unlike the other [base64](#base64) which just generates a random string.
+
+Example: `$SERVICE_REALBASE64_APPWRITE`
+
+Generator: `base64_encode(Str::random(32));`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      - APPWRITE_SECRET=$SERVICE_REALBASE64_APPWRITE
+```
+
+If you wish to generate longer strings, you can use the following:
+
+#### REALBASE64_64
+
+Example: `$SERVICE_REALBASE64_64_APPWRITE`
+
+Generator: `base64_encode(Str::random(64));`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      - APPWRITE_SECRET=$SERVICE_REALBASE64_64_APPWRITE
+```
+
+#### REALBASE64_128
+
+Example: `$SERVICE_REALBASE64_128_APPWRITE`
+
+Generator: `base64_encode(Str::random(128));`
+
+```yaml
+services:
+  appwrite:
+    environment:
+      - APPWRITE_SECRET=$SERVICE_REALBASE64_128_APPWRITE
+```
+
+### Storage
+
+You can predefine storage normally in your compose file, but there are a few extra options that you can set to tell Coolify what to do with the storage.
+
+#### Create an empty directory
+
+```yaml
+# Predefine directories with host binding
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    volumes:
+      - type: bind
+        source: ./srv
+        target: /srv
+        is_directory: true # This will tell Coolify to create the directory (this is not available in a normal docker-compose)
+```
+
+#### Create a file with content
+
+Here you can see how to add a file with content and a dynamic value that is coming from an environment variable.
+
+```yaml
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - type: bind
+        source: ./srv/99-roles.sql
+        target: /docker-entrypoint-initdb.d/init-scripts/99-roles.sql
+        content: |
+          -- NOTE: change to your own passwords for production environments
+           \set pgpass `echo "$POSTGRES_PASSWORD"`
+
+           ALTER USER authenticator WITH PASSWORD :'pgpass';
+           ALTER USER pgbouncer WITH PASSWORD :'pgpass';
+```
+
+## Metadata
+
+You need to add extra metadata to the top of the `docker-compose` file, like:
+
+- documentation link
+- a slogan
+- additional tags (for better searching)
+- logo (local icon, could be svg, png, etc)
+- port (always use the port which is the main entrypoint - like frontend - of the service)
+
+
+  Always add a port, because Caddy Proxy cannot determine the port of the
+  service automatically.
+
+
+Example:
+
+```
+# documentation: https://docs.n8n.io/hosting/
+# slogan: n8n is an extendable workflow automation tool which enables you to connect anything to everything via its open, fair-code model.
+# tags: n8n,workflow,automation,open,source,low,code
+# logo: svgs/n8n.svg
+# port: 5678
+
+... rest of the compose file ...
+
+```
+
+## Add a new service
+
+Official templates stored [here](https://github.com/coollabsio/coolify/blob/main/templates/compose). They are just normal docker-compose files with a bit of magic.
+
+To add a new service, you can easily test your templates with `Docker Compose` deployments inside Coolify. It uses the same process to parse, generate and deploy as the one-click services.
+
+If you are done with tests and everything works, open a [PR](https://github.com/coollabsio/coolify/compare), that have the new `<service>.yaml` compose file under `/templates/compose`.
+
+
+  Coolify will use a [parsed
+  version](https://github.com/coollabsio/coolify/blob/main/templates/service-templates.json).
+
+
+### Request a new service
+
+If there is a service template you'd like to see:
+1. Search GitHub discussions [here](https://github.com/coollabsio/coolify/discussions/categories/new-service-integrations).
+2. If it has already been requested, upvote it. If not, create a new request.

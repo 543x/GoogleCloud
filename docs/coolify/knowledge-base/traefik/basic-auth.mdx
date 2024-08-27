@@ -1,0 +1,52 @@
+---
+title: "Basic Auth"
+"og:title": "How to configure basic auth with Traefik in Coolify"
+description: "A guide to configure basic auth with Traefik in Coolify"
+---
+
+The configuration is slightly different for `Standard Applications` and `Docker Compose` based applications/one-click services.
+
+All you need to do is to set custom labels on your application.
+
+## Standard Applications
+
+```bash
+traefik.http.middlewares.<random_unique_name>.basicauth.users=test:$2y$12$ci.4U63YX83CwkyUrjqxAucnmi2xXOIlEF6T/KdP9824f1Rf1iyNG
+traefik.http.routers.<unique_router_name>.middlewares=<random_unique_name>
+```
+
+
+You most likely have a `traefik.http.middlewares` label already set. In that case, you can append the `<random_unique_name>` middleware to the existing value.
+For example:
+
+```bash
+traefik.http.routers.<unique_router_name>.middlewares=gzip,<random_unique_name>
+```
+
+
+In the example above, we are using `test` as username and `test` as password.
+
+## Docker Compose based Applications & one-click Services
+
+You only need to add the basicauth middleware.
+
+```yaml
+services:
+  changedetection:
+    labels:
+      - 'traefik.http.middlewares.<random_unique_name>.basicauth.users=test:$2y$12$ci.4U63YX83CwkyUrjqxAucnmi2xXOIlEF6T/KdP9824f1Rf1iyNG'
+```
+
+In the example above, we are using `test` as username and `test` as password.
+
+Enable `Escape special characters in labels?` when applying basic auth labels.
+
+## How to generate user/password?
+
+You need to set your username and password in the `basicauth.users` label.
+
+You can generate one with the [htpasswd](https://httpd.apache.org/docs/current/programs/htpasswd.html) command:
+
+```bash
+htpasswd -nbB test test
+```

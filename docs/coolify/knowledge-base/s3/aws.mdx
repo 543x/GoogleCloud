@@ -1,0 +1,121 @@
+---
+title: "AWS S3"
+"og:title": "How to configure AWS S3 bucket in Coolify"
+description: "Here you can find the documentation for configuring AWS S3 bucket in Coolify."
+---
+
+# TLDR
+
+1. Create a bucket in AWS Console
+2. Create a custom policy in AWS Console with the following permissions:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:GetObjectAcl",
+        "s3:PutObjectAcl",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        // rewrite your-bucket-name with your bucket name
+        "arn:aws:s3:::your-bucket-name",
+        "arn:aws:s3:::your-bucket-name/*"
+      ]
+    }
+  ]
+}
+```
+
+3. Create an IAM user in AWS Console & attach the policy from the previous step.
+4. Go to User settings & create an `Access Key` in AWS Console.
+5. Add the `Access Key` and `Secret Key` in Coolify when you create a new S3 source.
+   
+     You need to use the S3 HTTP endpoit without the bucket name, for example,
+     `https://s3.eu-central-1.amazonaws.com`.
+   
+
+# Detailed steps
+
+### Create a bucket
+
+
+
+    Go to [AWS Console](https://us-east-1.console.aws.amazon.com/s3/buckets) and
+    create a new bucket. 
+  
+ 
+
+
+### Create a new policy
+
+
+
+    Go to [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home) and create a new policy.
+
+  
+
+   Add the following JSON permissions to your policy (replace `your-bucket-name` with your bucket name):
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:GetObjectAcl",
+        "s3:PutObjectAcl",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bucket-name",
+        "arn:aws:s3:::your-bucket-name/*"
+      ]
+    }
+  ]
+}
+```
+
+  
+
+
+### Create a new IAM user
+
+
+ 
+    Go to [AWS Console](https://us-east-1.console.aws.amazon.com/iam/home) and
+    create a new user. 
+
+  
+ 
+
+  
+
+ 
+    You will need it to configure this S3 storage in Coolify.
+
+  
+
+
+### Configure S3 in Coolify
+
+
+
+    Go to your Coolify instance and create a new S3 storage.
+
+
+    Make sure you use the S3 HTTP endpoint without the bucket name. For example,
+    `https://s3.eu-central-1.amazonaws.com`. 
+  
+
+
+Well done!
